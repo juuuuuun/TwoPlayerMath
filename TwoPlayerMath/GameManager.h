@@ -21,7 +21,7 @@ NS_ASSUME_NONNULL_BEGIN
 -(BOOL) answer:(NSInteger)answerInput;
 -(NSString *) nextQuestion;
 -(NSString *) reportScore:(NSUInteger)playerIndex;
--(NSString *) currentPlayer;
+-(NSString *) currentPlayerName;
 
 @end
 

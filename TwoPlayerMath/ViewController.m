@@ -28,46 +28,46 @@
 @end
 
 @implementation ViewController
-- (IBAction)pressedZero:(UIButton *)sender {
-    [self.userInput appendString:@"0"];
+- (IBAction)pressedNumber:(UIButton *)sender {
+    [self.userInput appendString:sender.titleLabel.text];
     self.answerLabel.text = self.userInput;
 }
-- (IBAction)pressedOne:(UIButton *)sender {
-    [self.userInput appendString:@"1"];
-    self.answerLabel.text = self.userInput;
-}
-- (IBAction)pressedTwo:(UIButton *)sender {
-    [self.userInput appendString:@"2"];
-    self.answerLabel.text = self.userInput;
-}
-- (IBAction)pressedThree:(UIButton *)sender {
-    [self.userInput appendString:@"3"];
-    self.answerLabel.text = self.userInput;
-}
-- (IBAction)pressedFour:(UIButton *)sender {
-    [self.userInput appendString:@"4"];
-    self.answerLabel.text = self.userInput;
-}
-- (IBAction)pressedFive:(UIButton *)sender {
-    [self.userInput appendString:@"5"];
-    self.answerLabel.text = self.userInput;
-}
-- (IBAction)pressedSix:(UIButton *)sender {
-    [self.userInput appendString:@"6"];
-    self.answerLabel.text = self.userInput;
-}
-- (IBAction)pressedSeven:(UIButton *)sender {
-    [self.userInput appendString:@"7"];
-    self.answerLabel.text = self.userInput;
-}
-- (IBAction)pressedEight:(UIButton *)sender {
-    [self.userInput appendString:@"8"];
-    self.answerLabel.text = self.userInput;
-}
-- (IBAction)pressedNine:(UIButton *)sender {
-    [self.userInput appendString:@"9"];
-    self.answerLabel.text = self.userInput;
-}
+//- (IBAction)pressedOne:(UIButton *)sender {
+//    [self.userInput appendString:@"1"];
+//    self.answerLabel.text = self.userInput;
+//}
+//- (IBAction)pressedTwo:(UIButton *)sender {
+//    [self.userInput appendString:@"2"];
+//    self.answerLabel.text = self.userInput;
+//}
+//- (IBAction)pressedThree:(UIButton *)sender {
+//    [self.userInput appendString:@"3"];
+//    self.answerLabel.text = self.userInput;
+//}
+//- (IBAction)pressedFour:(UIButton *)sender {
+//    [self.userInput appendString:@"4"];
+//    self.answerLabel.text = self.userInput;
+//}
+//- (IBAction)pressedFive:(UIButton *)sender {
+//    [self.userInput appendString:@"5"];
+//    self.answerLabel.text = self.userInput;
+//}
+//- (IBAction)pressedSix:(UIButton *)sender {
+//    [self.userInput appendString:@"6"];
+//    self.answerLabel.text = self.userInput;
+//}
+//- (IBAction)pressedSeven:(UIButton *)sender {
+//    [self.userInput appendString:@"7"];
+//    self.answerLabel.text = self.userInput;
+//}
+//- (IBAction)pressedEight:(UIButton *)sender {
+//    [self.userInput appendString:@"8"];
+//    self.answerLabel.text = self.userInput;
+//}
+//- (IBAction)pressedNine:(UIButton *)sender {
+//    [self.userInput appendString:@"9"];
+//    self.answerLabel.text = self.userInput;
+//}
 - (IBAction)pressedEnter:(UIButton *)sender {
     if([self.gameManager answer: self.userInput.integerValue]) {
         self.correctLabel.text = @"Correct!";
@@ -88,17 +88,16 @@
     if(self.gameManager.gameOver) {
         
         UIAlertController* gameOverAlert = [UIAlertController alertControllerWithTitle:@"Game Over!" message:@"Would you like to play again?" preferredStyle:UIAlertControllerStyleAlert];
+        
         [gameOverAlert addAction:[UIAlertAction actionWithTitle:@"Yes" style:UIAlertActionStyleDefault handler:^(UIAlertAction* action){
             [self initializeView];
         }]];
-        
         [self presentViewController:gameOverAlert animated:YES completion:nil];
         
     } else {
     
-        [self.gameManager nextQuestion];
-        self.questionLabel.text = [NSString stringWithFormat:@"%@: %@", [self.gameManager currentPlayer], [self.gameManager nextQuestion]];
-        self.userInput = [[NSMutableString alloc] init];
+        self.questionLabel.text = [NSString stringWithFormat:@"%@: %@", [self.gameManager currentPlayerName], [self.gameManager nextQuestion]];
+        self.userInput = [@"" mutableCopy];
         self.answerLabel.text = self.userInput;
     }
     
@@ -114,7 +113,7 @@
     self.gameManager = [[GameManager alloc] init];
     self.userInput = [[NSMutableString alloc] init];
     
-    self.questionLabel.text = [NSString stringWithFormat:@"%@: %@", [self.gameManager currentPlayer], [self.gameManager nextQuestion]];
+    self.questionLabel.text = [NSString stringWithFormat:@"%@: %@", [self.gameManager currentPlayerName], [self.gameManager nextQuestion]];
     self.answerLabel.text = self.userInput;
     
     self.playerOneScore.text = [self.gameManager reportScore:0];

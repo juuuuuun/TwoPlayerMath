@@ -43,7 +43,7 @@
 }
 
 - (NSString *) reportScore:(NSUInteger)playerIndex {
-    NSMutableString* scoreToReport = [NSMutableString stringWithFormat:@"%@: ", self.players[playerIndex].name];
+    NSMutableString* scoreToReport = [NSMutableString stringWithFormat:@"%@: ", [self currentPlayerName]];
     for(int i = 0; i < self.players[playerIndex].score; i++) {
         [scoreToReport appendString:@"❤️"];
     }
@@ -76,7 +76,7 @@
     return self.mathQuestion.question;
 }
 
--(NSString *)currentPlayer {
+-(NSString *)currentPlayerName {
     return self.players[self.currentPlayerIndex].name;
 }
 
