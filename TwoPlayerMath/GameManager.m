@@ -43,7 +43,7 @@
 }
 
 - (NSString *) reportScore:(NSUInteger)playerIndex {
-    NSMutableString* scoreToReport = [NSMutableString stringWithFormat:@"%@: ", [self currentPlayerName]];
+    NSMutableString* scoreToReport = [NSMutableString stringWithFormat:@"%@: ", self.players[playerIndex].name];
     for(int i = 0; i < self.players[playerIndex].score; i++) {
         [scoreToReport appendString:@"❤️"];
     }
